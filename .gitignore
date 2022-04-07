@@ -1,0 +1,17 @@
+node_modules
+# Keep environment variables out of version control
+.env
+
+
+# Serverless Webpack directories
+.webpack/
+
+
+# SvelteKit build / generate output
+.svelte-kit
+
+
+# prisma migrations
+migrations/
+
+# End of https://www.toptal.com/developers/gitignore/api/macos,node
