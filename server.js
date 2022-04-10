@@ -7,30 +7,31 @@ dotenv.config();
 
 import routes from './routes';
 
+const PORT = process.env.PORT;
+
 const app = express();
 
 //Middleware
-app.use(cors);
+app.use(cors());
 app.use(express.json());
+
+//Routing
 app.use(routes);
 
-app.get('/ping', (req, res) => {
-  res.json({ message: 'pong' });
-});
-
+// Create a server
 const server = http.createServer(app);
-const PORT = process.env.PORT;
 
-const start = async () => {
-  // 서버를 시작하는 함수입니다.
+// Run my server
+const serverStart = async () => {
   try {
-    server.listen(PORT, () => console.log(`Server is listening on ${PORT}`));
+    server.listen(PORT, () => {
+      console.log(`server is listening on PORT ${PORT}`);
+    });
   } catch (err) {
-    console.error(err);
-    await prisma.$disconnect(); // 에러가 발생했을 시에 database 연결을 종료합니다.
+    console.log(err);
   }
 };
 
-start();
+serverStart();
 
 export default app;
